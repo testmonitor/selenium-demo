@@ -4,25 +4,25 @@
 
     <test name="LoginTests">
         <classes>
-            <class name="test.com.testmonitor.beaker.LoginTests" />
+            <class name="com.testmonitor.beaker.LoginTests" />
         </classes>
     </test>
 
     <test name="LogoutTests">
         <classes>
-            <class name="test.com.testmonitor.beaker.LogoutTests" />
+            <class name="com.testmonitor.beaker.LogoutTests" />
         </classes>
     </test>
 
     <test name="ForgotPasswordTests">
         <classes>
-            <class name="test.com.testmonitor.beaker.ForgotPasswordTests" />
+            <class name="com.testmonitor.beaker.ForgotPasswordTests" />
         </classes>
     </test>
 
     <test name="OpenPagesTests">
         <classes>
-            <class name="test.com.testmonitor.beaker.OpenPagesTests" />
+            <class name="com.testmonitor.beaker.OpenPagesTests" />
         </classes>
     </test>
 

@@ -1,4 +1,4 @@
-package test.com.testmonitor.beaker;
+package com.testmonitor.beaker;
 
 import com.testmonitor.listener.interfaces.HasWebdriver;
 

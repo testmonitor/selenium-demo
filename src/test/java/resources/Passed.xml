@@ -4,13 +4,13 @@
 
     <test name="LoginTests">
         <classes>
-            <class name="test.com.testmonitor.beaker.LoginTests" />
+            <class name="com.testmonitor.beaker.LoginTests" />
         </classes>
     </test>
 
     <test name="LogoutTests">
         <classes>
-            <class name="test.com.testmonitor.beaker.LogoutTests" />
+            <class name="com.testmonitor.beaker.LogoutTests" />
         </classes>
     </test>
 

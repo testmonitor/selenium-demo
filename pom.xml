@@ -7,6 +7,10 @@
     <version>0.0.1-SNAPSHOT</version>
     <name>SeleniumDemo</name>
 
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
+    
     <dependencies>
         <!-- https://mvnrepository.com/artifact/org.testng/testng -->
         <dependency>
@@ -31,7 +35,12 @@
     </dependencies>
 
     <build>
-        <sourceDirectory>${project.basedir}/src</sourceDirectory>
+        <directory>${project.basedir}/target</directory>
+        <outputDirectory>${project.build.directory}/classes</outputDirectory>
+        <finalName>${project.artifactId}-${project.version}</finalName>
+        <sourceDirectory>${project.basedir}/src/main/java</sourceDirectory>
+        <testSourceDirectory>${project.basedir}/src/test/java</testSourceDirectory>
+        
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -56,7 +65,7 @@
                         <version>2.19.1</version>
                         <configuration>
                             <suiteXmlFiles>
-                                <suiteXmlFile>${project.basedir}/src/test/resources/Passed.xml</suiteXmlFile>
+                                <suiteXmlFile>${project.basedir}/src/test/java/resources/Passed.xml</suiteXmlFile>
                             </suiteXmlFiles>
                         </configuration>
                     </plugin>
@@ -73,7 +82,7 @@
                         <version>2.19.1</version>
                         <configuration>
                             <suiteXmlFiles>
-                                <suiteXmlFile>${project.basedir}/src/test/resources/Failed.xml</suiteXmlFile>
+                                <suiteXmlFile>${project.basedir}/src/test/java/resources/Failed.xml</suiteXmlFile>
                             </suiteXmlFiles>
                         </configuration>
                     </plugin>
