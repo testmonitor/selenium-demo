@@ -27,14 +27,17 @@ public class LoginTests implements HasWebdriver {
 	@Test(priority = 1)
 	public void positiveLoginTest() {
 
+		String email = "beaker@testmonitor.com";
+		String password = "7SkmdtRffYweHM68";
+		
 		String websiteUrl = "https://beaker.testmonitor.com/login";
 		this.driver.get(websiteUrl);
 
 		WebElement emailField = this.driver.findElement(By.id("email"));
-		emailField.sendKeys("beaker@testmonitor.com");
+		emailField.sendKeys(email);
 
 		WebElement passwordField = this.driver.findElement(By.id("password"));
-		passwordField.sendKeys("7SkmdtRffYweHM68");
+		passwordField.sendKeys(password);
 
 		WebElement logInButton = this.driver.findElement(By.tagName("button"));
 		logInButton.click();
@@ -45,7 +48,6 @@ public class LoginTests implements HasWebdriver {
 		String expectedUrl = "https://beaker.testmonitor.com/dashboard";
 		String actualUrl = this.driver.getCurrentUrl();
 		Assert.assertEquals(actualUrl, expectedUrl, "Actual page URL is not the same as expected.");
-
 	}
 
 	@Test(priority = 2)

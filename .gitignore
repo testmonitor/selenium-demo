@@ -28,6 +28,7 @@ target/
 bin/
 build/
 java/build/**
+test-output/
 
 # Documentation
 javadoc/
