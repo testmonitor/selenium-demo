@@ -76,16 +76,22 @@ TESTMONITOR_TEST_RUN_PREFIX=AT
 
 And you're all good to go! 
 
-To run the test that pass, simply type:
+To run a single test case without sending the results to TestMonitor, simply type:
 
 ```sh
-$ mvn test -P passed
+$ mvn test -P single
 ```
 
-To run all tests, including the failing ones:
+To run a series of happy flow test cases and send their results to TestMonitor, use:
 
 ```sh
-$ mvn test -P failed
+$ mvn test -P happyflow
+```
+
+You can test all test cases (including the failing ones) and send the results to TestMonitor using:
+
+```sh
+$ mvn test -P all
 ```
 
 ## Credits
