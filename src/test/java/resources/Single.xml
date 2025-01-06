@@ -13,4 +13,7 @@
         </classes>
     </test>
 
+    <listeners>
+        <listener class-name="com.testmonitor.listener.TestMonitorListener" />
+    </listeners>
 </suite>
