@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="Beaker Test Suite" parallel="false">
+    <listeners>
+        <listener class-name="com.testmonitor.testng.TestNGReporter"/>
+    </listeners>
+
+    <test name="Landing Page Tests">
+        <classes>
+            <class name="com.testmonitor.beaker.tests.LandingPageTest"/>
+        </classes>
+    </test>
+
+    <test name="Login Flow Tests">
+        <classes>
+            <class name="com.testmonitor.beaker.tests.LoginFlowTest"/>
+        </classes>
+    </test>
+
+    <test name="Password Reset Tests">
+        <classes>
+            <class name="com.testmonitor.beaker.tests.PasswordResetTest"/>
+        </classes>
+    </test>
+
+    <test name="Task Management Tests">
+        <classes>
+            <class name="com.testmonitor.beaker.tests.TaskManagementTest"/>
+        </classes>
+    </test>
+
+    <test name="Logout Flow Tests">
+        <classes>
+            <class name="com.testmonitor.beaker.tests.LogoutFlowTest"/>
+        </classes>
+    </test>
+</suite>

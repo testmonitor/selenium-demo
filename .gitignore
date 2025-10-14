@@ -1,7 +1,5 @@
-# Package Files
-*.jar
-*.war
-*.ear
+# Maven
+target/
 
 # Eclipse
 .classpath
@@ -16,23 +14,5 @@
 # VSCode
 .vscode/
 
-# Mac
-.DS_Store
-
-# Maven
-log/
-target/
-
-# Compiled Files
-*.class
-bin/
-build/
-java/build/**
+# TestNG
 test-output/
-
-# Documentation
-javadoc/
-
-# Misc
-development.properties
-testmonitor.properties

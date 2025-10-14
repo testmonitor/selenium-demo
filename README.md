@@ -1,105 +1,111 @@
-# TestMonitor Selenium Demo
+# TestMonitor TestNG Reporter Demo
 
-This repository contains a demo that shows you how to save your Selenium test results in [TestMonitor](https://www.testmonitor.com/).
+This demo repository showcases how to integrate the [TestMonitor TestNG Reporter](https://mvnrepository.com/artifact/com.testmonitor/testng-reporter) into your Selenium WebDriver test suite. It contains example tests that demonstrate automated test reporting to TestMonitor.
 
 ## Table of Contents
 
-- [Prerequisites](#prerequisites)
-  * [Windows](#windows)
-  * [Linux](#linux-debian-based)
-  * [Mac](#mac)
-- [Running the Demo](#running-the-demo)
-- [Credits](#credits)
+- [About](#about)
+- [Installation](#installation)
+- [Configuration](#configuration)
+- [Running the Tests](#running-the-tests)
 - [License](#license)
 
-## Prerequisites
+## About
 
-In order to run this demo, you have to make sure the following applications are installed:
+This repository provides a working example of:
 
-* A recent [Java JDK](https://www.oracle.com/java/technologies/downloads/).
-* A recent [ChromeDriver](https://chromedriver.chromium.org/).
+- Setting up Selenium WebDriver with TestNG and the TestMonitor reporter
+- Configuring the reporter in `pom.xml` and `testng.xml`
+- Sample test cases using the Page Object Model pattern
+- Automatic screenshot capture on test failures
+- Tests that run on Windows, Linux, and macOS
 
-A **TestMonitor project** and **Auth token** are required as well. When you're already a TestMonitor user, create a new project or re-use an existing one. You can create an Auth token by clicking on your avatar on the top right and selecting *"My account..."*. Select *API* in the menu and click on *Create Token* to generate your Auth token.
+## Installation
 
-If you're not a TestMonitor user, you can [register for a free trial](https://register.testmonitor.com/) first.
+Before you start, make sure you have the following installed:
 
-### Windows
+- [Java 11](https://www.java.com/) or higher
+- [Maven 3.6](https://maven.apache.org/download.cgi) or higher
+- [Chrome browser](https://www.google.com/chrome/)
 
-Follow these steps:
+Clone this repository and install the dependencies:
 
-- Download and install the [Java Software Development Kit (JDK)](http://www.oracle.com/technetwork/java/javase/downloads/index.html).
-- Install [Google Chrome](https://www.google.com/intl/en_us/chrome/).
-- Download the [Google ChromeDriver](https://chromedriver.chromium.org/downloads) that matches your Google Chrome version.
-
-### Linux (Debian-based)
-
-Follow the instructions of [this tutorial](https://tecadmin.net/setup-selenium-chromedriver-on-ubuntu/) to setup Java, Chrome, and the ChromeDriver on your system.
-
-### Mac
-
-When on a Mac, we recommend installing these applications through [Brew](https://brew.sh/).
-
-```sh
-$ brew install --cask oracle-jdk
-$ brew install --cask chromedriver
+```bash
+git clone https://github.com/testmonitor/selenium-demo.git
+cd selenium-demo
+mvn clean install -DskipTests
 ```
 
-## Running the Demo
+The project uses Selenium Manager (built into Selenium 4.6+), which automatically downloads and manages the ChromeDriver for your operating system.
 
-Start by cloning the repository from Github:
+## Configuration
 
-```sh
-$ git clone https://github.com/testmonitor/selenium-demo.git
+The reporter is already configured in [pom.xml](pom.xml) and [testng.xml](testng.xml).
+
+First, add the TestMonitor TestNG reporter dependency to your Maven project:
+
+```xml
+<dependency>
+  <groupId>com.testmonitor</groupId>
+  <artifactId>testng-reporter</artifactId>
+  <version>[1.0.0,)</version>
+</dependency>
 ```
 
-Let Maven install the required packages:
+Next, add the reporter to the listeners section in your test suite XML:
 
-```sh
-$ mvn install
+```xml
+<suite name="Tests">
+  <listeners>
+    <listener class-name="com.testmonitor.testng.TestNGReporter"/>
+  </listeners>
+  <!-- test definitions -->
+</suite>
 ```
 
-Configure the path of your Chrome driver:
+Configure your TestMonitor credentials using environment variables or system properties. For this demo, we recommend using `-D` parameters with Maven:
 
-```sh
-$ export CHROMEDRIVER_PATH=/usr/local/bin/chromedriver
+**Configuration options:**
+
+| Variable | Required | Description |
+|----------|----------|-------------|
+| `TESTMONITOR_DOMAIN` | Yes | Your TestMonitor instance domain (e.g., mydomain.testmonitor.com) |
+| `TESTMONITOR_TOKEN` | Yes | Your TestMonitor integration token |
+| `TESTMONITOR_MILESTONE_ID` | No | ID of an existing milestone to link test results to |
+| `TESTMONITOR_MILESTONE_NAME` | No | Name of a milestone (will be created if it doesn't exist or matched if it does) |
+| `TESTMONITOR_ATTACHMENT_ON_FAILURE` | No | Attach screenshots on failure (default: true) |
+
+To get started, you'll need a token from your TestNG integration. You can find it on the TestNG integration page of your TestMonitor project settings.
+
+## Running the Tests
+
+Run the demo tests using Maven with your TestMonitor credentials:
+
+```bash
+mvn test \
+  -DTESTMONITOR_DOMAIN=mydomain.testmonitor.com \
+  -DTESTMONITOR_TOKEN=your-token-here
 ```
 
-Configure the properties in the `testmonitor.properties` file:
+Alternatively, you can set environment variables:
 
-```properties
-TESTMONITOR_DOMAIN=mydomain.testmonitor.com
-TESTMONITOR_TOKEN=itsatoken
-TESTMONITOR_PROJECT_ID=1
-TESTMONITOR_MILESTONE_ID=1
-TESTMONITOR_TEST_RUN_PREFIX=AT 
+```bash
+export TESTMONITOR_DOMAIN=mydomain.testmonitor.com
+export TESTMONITOR_TOKEN=your-token-here
+mvn test
 ```
 
-And you're all good to go! 
+The reporter will automatically:
 
-To run a single test case without sending the results to TestMonitor, simply type:
+- Create a test run in TestMonitor
+- Submit test results (pass/fail status)
+- Include screenshots for failed tests
+- Report test execution times
 
-```sh
-$ mvn test -P single
-```
+### View results
 
-To run a series of happy flow test cases and send their results to TestMonitor, use:
-
-```sh
-$ mvn test -P happyflow
-```
-
-You can test all test cases (including the failing ones) and send the results to TestMonitor using:
-
-```sh
-$ mvn test -P all
-```
-
-## Credits
-
-* **Thijs Kok** - *Lead developer* - [ThijsKok](https://github.com/thijskok)
-* **Stephan Grootveld** - *Developer* - [Stefanius](https://github.com/stefanius)
-* **Muriel Nooder** - *Developer* - [ThaNoodle](https://github.com/thanoodle)
+After running the tests, check your TestMonitor instance to see the reported results.
 
 ## License
 
-TestMonitor is a commercial product, provided as a SaaS application to the customers of TestManagement BV.
+Copyright (c) TestMonitor | we are Cerios B.V. All rights reserved.
