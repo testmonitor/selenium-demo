@@ -1,4 +1,4 @@
-# TestMonitor TestNG Reporter Demo
+# TestMonitor Selenium Demo
 
 This demo repository showcases how to integrate the [TestMonitor TestNG Reporter](https://mvnrepository.com/artifact/com.testmonitor/testng-reporter) into your Selenium WebDriver test suite. It contains example tests that demonstrate automated test reporting to TestMonitor.
 
